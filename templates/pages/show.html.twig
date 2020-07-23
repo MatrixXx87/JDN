@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title jeux.title %}
+
+{% block body %}
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-4">
+          <h1>{{ jeux.title }}</h1>
+          <h2>{{ jeux.joueursmini }} - {{ jeux.joueursmaxi }} joueurs</h2>
+          <div class="text-primary" style="font-size: 4rem;font-weight: bold;">{{ jeux.timegame }} min environ</div>
+          <a href="#" class="btn btn-primary">liker ce jeu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-4">
+
+    <p>
+      {{ jeux.description | nl2br }}
+    </p>
+
+    <div class="row">
+      <div class="col-md-9">
+        <h2>Caractéristiques</h2>
+        <table class="table table-striped">
+          <tr>
+            <td>Description</td>
+            <td>{{ jeux.description }} </td>
+          </tr>
+          <tr>
+            <td>Regle</td>
+            <td>{{ jeux.regledujeu }}</td>
+          </tr>
+          <tr>
+            <td>Age recommandé</td>
+            <td>{{ jeux.agemini }} ans</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-3">
+            <tr>
+                <td><h2>Le contenu </br> de la boite</h2></td>
+                <td>{{ jeux.contenuboite }}</td>
+            </tr>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

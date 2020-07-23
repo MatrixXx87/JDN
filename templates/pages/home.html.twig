@@ -8,4 +8,22 @@
         <p>lumzhocuzoivjsoijvoijsoicjoisùdjoisjdoiùcoisjvo
         centersojvps d j pipooipofpo zropfk zpofpzo z zefo zemofùùzùmef zùo efj ùzej zùj zjfo</p>
     </div>
+
+    <div class="container">
+        <h2>Les derniers jeux</h2>
+        <div class="row flex">
+        {% for jeux in jeux %}
+            <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">
+                    <a class="text-primary" style="font-weight: bold;font-size: 2rem;" href="{{ path('jeux.show', {id: jeux.id, slug: jeux.slug}) }}">{{ jeux.title }}</a>
+                </h5>
+                <p class="card-text">Age mini:{{ jeux.agemini }} </br> Durée:({{ jeux.timegame }})min</p>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
 {% endblock %}
