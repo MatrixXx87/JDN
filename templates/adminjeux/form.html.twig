@@ -1,0 +1,36 @@
+{{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-md-4">{{ form_row(form.title) }}</div>
+        <div class="col-md-2">{{ form_row(form.joueursmini) }}</div>
+        <div class="col-md-2">{{ form_row(form.joueursmaxi) }}</div>
+        <div class="col-md-2">{{ form_row(form.timegame) }}</div>
+        <div class="col-md-2">{{ form_row(form.agemini) }}</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">{{form_row(form.description , { 'attr': {'class': 'taClass'} }) }}</div>
+        {% block stylesheets %}
+            <style>
+            .taClass{
+            height : 40vh !important ;
+            width : 100% ;
+            }
+            </style>
+        {% endblock %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.regledujeu) }}</div>
+        <div class="col-md-6">{{ form_row(form.contenuboite) }}</div>
+    </div>
+
+
+
+
+
+        {{form_widget(form)}}
+
+    <button class="btn btn-primary">{{ button|default ('Sauvegarder les changements')}}</button>
+
+    {{form_end(form)}}
