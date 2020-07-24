@@ -4,9 +4,12 @@ namespace App\Entity;
 use App\Repository\JeuxRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=JeuxRepository::class)
+ * @UniqueEntity ("title")
  */
 class Jeux
 {
