@@ -1,0 +1,9 @@
+<div class="card mb-4">
+    <div class="card-body">
+    </h5 class="card-title">
+        <a href='{{ path('jeux.show',{slug: jeux.slug, id: jeux.id}) }}' style='font-size:2rem; font-weight:bolt;'> {{jeux.title }}</a>
+    </h5>
+    <p class="card-text">Joueurs minimum: {{ jeux.joueursmini }}  Joueurs maximum: {{ jeux.joueursmaxi }}</p>
+    <p class="card-text">Durée moyenne: {{ jeux.timegame }} minutes </p>
+    </div>
+</div>

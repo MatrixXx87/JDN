@@ -3,9 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Jeux;
+use App\Entity\JeuxSearch;
+use App\Form\JeuxSearchType;
 use App\Repository\JeuxRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,10 +35,22 @@ class JeuxController extends AbstractController
      * @Route("/jeux", name="jeux.index")
      * @return Response
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $search = new JeuxSearch();
+        $form = $this->createForm(JeuxSearchType::class, $search);
+        $form->handleRequest($request);
+
+        $jeux = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1),
+            7
+        );
+
         return $this->render('jeux/index.html.twig',[
-            'current_menu' => 'jeux'
+            'current_menu' => 'jeux',
+            'jeux' => $jeux ,
+            'form' => $form->createView()
             ]);
     }
 
