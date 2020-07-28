@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Option;
+
 use App\Entity\JeuxSearch;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -30,13 +30,7 @@ class JeuxSearchType extends AbstractType
                     'placeholder' => 'nombre de joueurs maximum'
                 ]
             ])
-            ->add('options', EntityType::class, [
-                'required' => false,
-                'label' => false,
-                'class' => Option::class,
-                'choice_label' => 'name',
-                'multiple' => true
-            ])
+
         ;
     }
 

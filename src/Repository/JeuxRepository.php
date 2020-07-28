@@ -26,7 +26,7 @@ class JeuxRepository extends ServiceEntityRepository
      */
     public function findAllVisibleQuery(JeuxSearch $search)
     {
-        $query = $this->findVisibleQuery();
+        $query = $this->findAll();
 
         if ($search->getMaxPlayer()) {
             $query = $query
@@ -50,7 +50,7 @@ class JeuxRepository extends ServiceEntityRepository
             }
         }
 
-        return $query->getQuery();
+        return $query;
     }
 
     public function findLatest ()
@@ -62,7 +62,7 @@ class JeuxRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-   
+
 
     // /**
     //  * @return Jeux[] Returns an array of Jeux objects
