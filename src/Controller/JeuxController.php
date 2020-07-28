@@ -43,7 +43,7 @@ class JeuxController extends AbstractController
         $form->handleRequest($request);
 
         $jeux = $paginator->paginate (
-            $this->repository->findAll($search),
+            $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1),
             7
         );

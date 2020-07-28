@@ -28,28 +28,28 @@ class JeuxRepository extends ServiceEntityRepository
      */
     public function findAllVisibleQuery(JeuxSearch $search) : Query
     {
-        $query = $this->findVisibleQuery();
+        $query = $this->createQueryBuilder('p');
 
         if ($search->getMaxPlayer()) {
             $query = $query
-                ->andWhere('p.joueursmin <= :maxplayer')
-                ->setParameter('joueursmax', $search->getMaxPlayer());
+                ->andWhere('p.joueursmini <= :maxplayer')
+                ->setParameter('maxplayer', $search->getMaxPlayer());
         }
 
         if ($search->getMinPlayer()) {
             $query = $query
-                ->andWhere('p.playersmax >= :minplayer')
-                ->setParameter('playersmin', $search->getMinPlayer());
+                ->andWhere('p.joueursmaxi >= :minplayer')
+                ->setParameter('minplayer', $search->getMinPlayer());
         }
 
-    
+
 
         return $query->getQuery();
     }
 
     /**
      * @return Jeux[]
-     */ 
+     */
 
     public function findLatest () : array
     {
@@ -60,7 +60,7 @@ class JeuxRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-   
+
 
     // /**
     //  * @return Jeux[] Returns an array of Jeux objects
