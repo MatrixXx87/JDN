@@ -10,13 +10,7 @@ class JeuxSearch {
      * @var int|null
      * @Assert\Range(min=1, max=10)
      */
-    private $maxPlayer;
-
-    /**
-     * @var int|null
-     * @Assert\Range(min=1, max=10)
-     */
-    private $minPlayer;
+    private $Player;
 
     /**
      * @var ArrayCollection
@@ -31,53 +25,20 @@ class JeuxSearch {
     /**
      * @return int|null
      */
-    public function getMaxPlayer(): ?int
+    public function getPlayer(): ?int
     {
-        return $this->maxPlayer;
+        return $this->Player;
     }
 
     /**
-     * @param int|null $maxPlayer
+     * @param int|null $Player
      * @return JeuxSearch
      */
-    public function setMaxPlayer(int $maxPlayer): JeuxSearch
+    public function setPlayer(int $Player): JeuxSearch
     {
-        $this->maxPlayer = $maxPlayer;
+        $this->Player = $Player;
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getMinPlayer(): ?int
-    {
-        return $this->minPlayer;
-    }
-
-    /**
-     * @param int|null $minPlayer
-     * @return JeuxSearch
-     */
-    public function setMinPlayer(int $minPlayer): JeuxSearch
-    {
-        $this->minPlayer = $minPlayer;
-        return $this;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getOptions(): ArrayCollection
-    {
-        return $this->options;
-    }
-
-    /**
-     * @param ArrayCollection $options
-     */
-    public function setOptions(ArrayCollection $options): void
-    {
-        $this->options = $options;
-    }
 
 }

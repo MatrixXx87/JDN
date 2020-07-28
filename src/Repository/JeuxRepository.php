@@ -30,19 +30,12 @@ class JeuxRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('p');
 
-        if ($search->getMaxPlayer()) {
+        if ($search->getPlayer()) {
             $query = $query
-                ->andWhere('p.joueursmini <= :maxplayer')
-                ->setParameter('maxplayer', $search->getMaxPlayer());
+                ->andWhere('p.joueursmini <= :player')
+                ->andWhere('p.joueursmaxi >= :player')
+                ->setParameter('player', $search->getPlayer());
         }
-
-        if ($search->getMinPlayer()) {
-            $query = $query
-                ->andWhere('p.joueursmaxi >= :minplayer')
-                ->setParameter('minplayer', $search->getMinPlayer());
-        }
-
-
 
         return $query->getQuery();
     }

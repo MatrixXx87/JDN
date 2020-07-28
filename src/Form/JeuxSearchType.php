@@ -16,20 +16,14 @@ class JeuxSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('minPlayer', IntegerType::class, [
+            ->add('Player', IntegerType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'nombre de joueurs minium'
+                    'placeholder' => 'Combien de joueur(s) etes vous ?'
                 ]
             ])
-            ->add('maxPlayer', IntegerType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'nombre de joueurs maximum'
-                ]
-            ])
+            
             ;
     }
 
