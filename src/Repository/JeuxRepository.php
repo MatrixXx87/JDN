@@ -4,9 +4,11 @@ namespace App\Repository;
 
 use App\Entity\Jeux;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\JeuxSearch;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method Jeux|null find($id, $lockMode = null, $lockVersion = null)
@@ -24,36 +26,32 @@ class JeuxRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findAllVisibleQuery(JeuxSearch $search)
+    public function findAllVisibleQuery(JeuxSearch $search) : Query
     {
         $query = $this->findVisibleQuery();
 
         if ($search->getMaxPlayer()) {
             $query = $query
-                ->andWhere('p.joueurmaxi <= :maxplayer')
-                ->setParameter('joueurmax', $search->getMaxPlayer());
+                ->andWhere('p.joueursmin <= :maxplayer')
+                ->setParameter('joueursmax', $search->getMaxPlayer());
         }
 
         if ($search->getMinPlayer()) {
             $query = $query
-                ->andWhere('p.playermini >= :minplayer')
-                ->setParameter('playermini', $search->getMinPlayer());
+                ->andWhere('p.playersmax >= :minplayer')
+                ->setParameter('playersmin', $search->getMinPlayer());
         }
 
-        if ($search->getOptions()->count() > 0) {
-            $k = 0;
-            foreach($search->getOptions() as $option) {
-                $k++;
-                $query = $query
-                    ->andWhere(":option$k MEMBER OF p.options")
-                    ->setParameter("option$k", $option);
-            }
-        }
+    
 
         return $query->getQuery();
     }
 
-    public function findLatest ()
+    /**
+     * @return Jeux[]
+     */ 
+
+    public function findLatest () : array
     {
         return $this->createQueryBuilder('j')
             ->orderBy('j.id', 'DESC')

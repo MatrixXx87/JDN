@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class JeuxController extends AbstractController
 {
@@ -35,14 +36,14 @@ class JeuxController extends AbstractController
      * @Route("/jeux", name="jeux.index")
      * @return Response
      */
-    public function index(PaginatorInterface $paginator, Request $request): Response
+    public function index( PaginatorInterface $paginator, Request $request): Response
     {
         $search = new JeuxSearch();
         $form = $this->createForm(JeuxSearchType::class, $search);
         $form->handleRequest($request);
 
-        $jeux = $paginator->paginate(
-            $this->repository->findAllVisibleQuery($search),
+        $jeux = $paginator->paginate (
+            $this->repository->findAll($search),
             $request->query->getInt('page', 1),
             7
         );

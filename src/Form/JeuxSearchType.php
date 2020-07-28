@@ -30,14 +30,7 @@ class JeuxSearchType extends AbstractType
                     'placeholder' => 'nombre de joueurs maximum'
                 ]
             ])
-            ->add('options', EntityType::class, [
-                'required' => false,
-                'label' => false,
-                'class' => Option::class,
-                'choice_label' => 'name',
-                'multiple' => true
-            ])
-        ;
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

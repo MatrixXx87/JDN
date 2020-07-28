@@ -6,11 +6,23 @@
     <div class="jumbotron text-center">
         <h1>Bienvenue sur la homepage</h1>
         {{form_start(form)}}
+        <div class= 'form-row'>
+            <div class='col'>
+                {{ form_row(form.minPlayer) }}
+            </div>
+             <div class='col'>
+                {{ form_row(form.maxPlayer) }}
+            </div>
+             <div class='col'>
+                <button class= "btn btn-primary">Rechercher</button>
+            </div>
+        </div>
         {{form_end(form)}}
-    
+    </div>
+
+    <div>    
         <div class='row'>
             {% for jeux in jeux %}
-            
                 <div class='col-md-6 offset-3'>
                     {% include 'jeux/jeux.html.twig' %}
                 </div>

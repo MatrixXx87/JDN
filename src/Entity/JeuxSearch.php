@@ -8,12 +8,13 @@ class JeuxSearch {
 
     /**
      * @var int|null
+     * @Assert\Range(min=1, max=10)
      */
     private $maxPlayer;
 
     /**
      * @var int|null
-     * @Assert\Range(min=10, max=400)
+     * @Assert\Range(min=1, max=10)
      */
     private $minPlayer;
 
@@ -54,7 +55,7 @@ class JeuxSearch {
     }
 
     /**
-     * @param int|null $minSurface
+     * @param int|null $minPlayer
      * @return JeuxSearch
      */
     public function setMinPlayer(int $minPlayer): JeuxSearch
