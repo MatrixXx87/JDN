@@ -24,7 +24,7 @@ class Jeux
      */
     private $id;
 
-     /**
+    /**
      * @var string|null
      * @ORM\Column(type="string", length=255)
      */
@@ -33,7 +33,7 @@ class Jeux
     /**
      * @var File|null
      * 
-     * @Vich\UploadableField(mapping="jeux_image", fileNameJeux="filename")
+     * @Vich\UploadableField(mapping="jeux_images", fileNameProperty="filename")
      */
     private $imageFile;
 
@@ -75,7 +75,12 @@ class Jeux
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $regledujeu;    
+    private $regledujeu;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;    
 
     public function getId(): ?int
     {
@@ -183,7 +188,7 @@ class Jeux
         return $this;
     }
 
-    /**
+       /**
      * @return null|string
      */
     public function getFilename(): ?string
