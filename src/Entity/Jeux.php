@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=JeuxRepository::class)
  * @UniqueEntity ("title")
- * Vich\Uploadable()
+ * @Vich\Uploadable()
  */
 class Jeux
 {

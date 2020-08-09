@@ -1,5 +1,9 @@
 <div class="card mb-4">
+    {% if jeux.filename %}
+        <img src="{{ vich_uploader_asset(jeux, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width: 100%; height:auto;">
+    {% endif %}
     <div class="card-body">
+    
     </h5 class="card-title">
         <a href='{{ path('jeux.show',{slug: jeux.slug, id: jeux.id}) }}' style='font-size:2rem; font-weight:bolt;'> {{jeux.title }}</a>
     </h5>
