@@ -1,6 +1,8 @@
-<div class="card mb-4">
+<div class="card mb-4 d-flex text-center flex-column justify-content-center">
     {% if jeux.filename %}
-        <img src="{{ vich_uploader_asset(jeux, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width: 100%; height:auto;">
+        <div>
+            <img src="{{ vich_uploader_asset(jeux, 'imageFile')  }}" alt="card-img-top" style="width: 50%; height:auto;">
+        </div>
     {% endif %}
     <div class="card-body">
     

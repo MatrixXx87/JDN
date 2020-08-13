@@ -7,6 +7,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
+        {% if jeux.filename %}
+          <div>
+            <img src="{{ vich_uploader_asset(jeux, 'imageFile')  }}" alt="card-img-top" style="width: 75%; height:auto;">
+          </div>
+        {% endif %}
 
         </div>
         <div class="col-md-4">
