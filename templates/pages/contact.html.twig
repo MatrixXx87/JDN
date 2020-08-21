@@ -9,15 +9,41 @@
         Le rendez vous a lieu à :</br>
          L'Escalier - tiers-lieu miaulétou 3 place Gay-Lussac 87400 Saint Leonard de Noblat</p>
         <p> 🎲Info Covid : Les Joueurs De Noblat reprennent leurs séances !!!🎲 </br>
-Comme il ne peut y avoir que 10 personnes par séances, seuls les membres actuels peuvent s'inscrire.</br>
-Vous avez du recevoir un SMS, répondez uniquement par SMS pour réserver une place.</br>
-⚠️ PS : lisez bien les règles à respecter face au virus, avant de venir !⚠️ </p>
+        Comme il ne peut y avoir que 10 personnes par séances, seuls les membres actuels peuvent s'inscrire.</br>
+        Vous avez du recevoir un SMS, répondez uniquement par SMS pour réserver une place.</br>
+        ⚠️ PS : lisez bien les règles à respecter face au virus, avant de venir !⚠️ </p>
     </div>
 
     <div class="container">
         <h2>La carte de route</h2>
-        <div class="row flex">
-         
-        </div>
+            <div id="mapid" class="h-50vh"></div>
+
+
+            {% block javascripts %}
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+<script type="text/javascript">
+    function init(){
+        var mymap = L.map('mapid').setView([45.837469, 1.489231], 16);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+
+        L.marker([45.837469, 1.489231]).addTo(mymap)
+            .bindPopup("<h3>L'escalier</h3><address>3, Place Gay Lussac<br/>87400 Saint-Léonard-de-Noblat</address>");
+
+        let circle = L.circle([45.837469, 1.489231], {
+            color: 'e58714',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 150
+        }).addTo(mymap);
+    }
+    window.onload = init();
+</script>
+{% endblock %}
+        
     </div>
+   
 {% endblock %}
