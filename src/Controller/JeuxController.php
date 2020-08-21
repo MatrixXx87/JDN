@@ -14,6 +14,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use App\Entity\Contact;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class JeuxController extends AbstractController
 {
@@ -61,17 +67,41 @@ class JeuxController extends AbstractController
      * @param jeux $jeux
      * @return Response
      */
-    public function show(Jeux $jeux, string $slug): Response
+    public function show(Jeux $jeux, string $slug, Request $request, ContactNotification $notification, MailerInterface $mailer): Response
     {
         if ($jeux->getSlug() !== $slug) {
             return $this->redirectToRoute('jeux.show', [
-                'id' => $jeux->getId(),
+                'id'   => $jeux->getId(),
                 'slug' => $jeux->getSlug()
             ], 301);
         }
+
+        $contact = new Contact();
+        $contact->setProperty($jeux);
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $email = (new Email())
+                ->from('test@gmail.com')
+                ->to ('you@exemple.com')
+                ->subject('Time for Symfony Mailer!')
+                ->text('Sending emails is fun again!')
+                ->html('<p>See Twig integration for better HTML integration!</p>');
+
+                $mailer->send($email);
+
+            $this->addFlash('success', 'Votre email a bien été envoyé');
+            return $this->redirectToRoute('jeux.show', [
+                'id'   => $jeux->getId(),
+                'slug' => $jeux->getSlug()
+            ]);
+        }
+
         return $this->render('pages/show.html.twig', [
-            'jeux' => $jeux,
-            'current_menu' => 'jeux'
+            'jeux'         => $jeux,
+            'current_menu' => 'jeux',
+            'form'         => $form->createView()
         ]);
     }
 
