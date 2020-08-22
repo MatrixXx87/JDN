@@ -5,6 +5,29 @@
 {% block body %}
     <div class="jumbotron text-center">
         <h1>Bienvenue sur la homepage</h1>
-        <p>wingardium leviosa</p>
+        {{form_start(form)}}
+        <div class= 'form-row'>
+             <div class='col'>
+                {{ form_row(form.Player) }}
+            </div>
+             <div class='col'>
+                <button class= "btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+        {{form_end(form)}}
+    </div>
+
+    <div>    
+        <div class='row'>
+            {% for jeux in jeux %}
+                <div class='col-md-6 offset-3'>
+                    {% include 'jeux/jeux.html.twig' %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="pagination"
+            {{ knp_pagination_render(jeux) }}
+        </div>
     </div>
 {% endblock %}

@@ -7,13 +7,35 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
+        {% if jeux.filename %}
+          <div>
+            <img src="{{ vich_uploader_asset(jeux, 'imageFile')  }}" alt="card-img-top" style="width: 75%; height:auto;">
+          </div>
+        {% endif %}
 
         </div>
         <div class="col-md-4">
           <h1>{{ jeux.title }}</h1>
           <h2>{{ jeux.joueursmini }} - {{ jeux.joueursmaxi }} joueurs</h2>
           <div class="text-primary" style="font-size: 4rem;font-weight: bold;">{{ jeux.timegame }} min environ</div>
-          <a href="#" class="btn btn-primary">liker ce jeu</a>
+            <a href="#" class="btn btn-primary">Contacter nous</a>
+            <div id="contactForm" class="mt-4">
+              {{ form_start(form) }}
+              <div class="row">
+                <div class="col">{{ form_row(form.firstname) }}</div>
+                <div class="col">{{ form_row(form.lastname) }}</div>
+              </div>
+              <div class="row">
+                <div class="col">{{ form_row(form.phone) }}</div>
+                <div class="col">{{ form_row(form.email) }}</div>
+              </div>
+              {{ form_rest(form) }}
+              <div class="form-group">
+                <button class="btn btn-primary">Envoyer</button>
+              </div>
+              {{ form_end(form) }}
+            </div>            
+          </div>
         </div>
       </div>
     </div>

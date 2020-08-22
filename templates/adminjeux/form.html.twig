@@ -1,0 +1,53 @@
+{{ form_start(form) }}
+
+    <div class="row">
+        <div class=" col-sm-8">{{ form_row(form.title) }}</div>
+        <div class="col-sm-4">{{ form_row(form.imageFile) }}</div>
+        <div class="col-sm-6">{{ form_row(form.joueursmini) }}</div>
+        <div class="col-sm-6">{{ form_row(form.joueursmaxi) }}</div>
+        <div class="col-sm-6">{{ form_row(form.timegame) }}</div>
+        <div class="col-sm-6">{{ form_row(form.agemini) }}</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">{{form_row(form.description , { 'attr': {'class': 'descriptionClass'} }) }}</div>
+        {% block stylesheets %}
+            <style>
+            .descriptionClass{
+            height : 40vh !important ;
+            width : 100% ;
+            }
+            </style>
+        {% endblock %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.regledujeu , { 'attr': {'class': 'regleClass'} }) }}</div>
+        {% block stylesheets2 %}
+            <style>
+            .regleClass{
+            height : 20vh !important ;
+            width : 100% ;
+            }
+            </style>
+        {% endblock %}
+        <div class="col-md-6">{{ form_row(form.contenuboite , { 'attr': {'class': 'contenuClass'} }) }}</div>
+        {% block stylesheets3 %}
+            <style>
+            .contenuClass{
+            height : 20vh !important ;
+            width : 100% ;
+            }
+            </style>
+        {% endblock %}
+    </div>
+
+
+
+
+
+        {{form_widget(form)}}
+
+    <button class="btn btn-primary">{{ button|default ('Sauvegarder les changements')}}</button>
+
+    {{form_end(form)}}

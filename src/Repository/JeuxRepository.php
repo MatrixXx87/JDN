@@ -4,8 +4,12 @@ namespace App\Repository;
 
 use App\Entity\Jeux;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\JeuxSearch;
+use Symfony\Bridge\Doctrine\RegistryInterface;
+
 /**
  * @method Jeux|null find($id, $lockMode = null, $lockVersion = null)
  * @method Jeux|null findOneBy(array $criteria, array $orderBy = null)
@@ -19,16 +23,37 @@ class JeuxRepository extends ServiceEntityRepository
         parent::__construct($registry, Jeux::class);
     }
 
-    public function findLatest ()
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(JeuxSearch $search) : Query
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if ($search->getPlayer()) {
+            $query = $query
+                ->andWhere('p.joueursmini <= :player')
+                ->andWhere('p.joueursmaxi >= :player')
+                ->setParameter('player', $search->getPlayer());
+        }
+
+        return $query->getQuery();
+    }
+
+    /**
+     * @return Jeux[]
+     */
+
+    public function findLatest () : array
     {
         return $this->createQueryBuilder('j')
             ->orderBy('j.id', 'DESC')
-            ->setMaxResults(4)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
 
-   
+
 
     // /**
     //  * @return Jeux[] Returns an array of Jeux objects

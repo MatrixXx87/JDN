@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Asso. Joueurs de Noblat'%}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Comment nous rencontrez</h1>
+        <p>Nous vous acceuillons tous les vendredi de 21:00 à 23:00 </br>
+        Le rendez vous a lieu à :</br>
+         L'Escalier - tiers-lieu miaulétou 3 place Gay-Lussac 87400 Saint Leonard de Noblat</p>
+        <p> 🎲Info Covid : Les Joueurs De Noblat reprennent leurs séances !!!🎲 </br>
+        Comme il ne peut y avoir que 10 personnes par séances, seuls les membres actuels peuvent s'inscrire.</br>
+        Vous avez du recevoir un SMS, répondez uniquement par SMS pour réserver une place.</br>
+        ⚠️ PS : lisez bien les règles à respecter face au virus, avant de venir !⚠️ </p>
+    </div>
+
+    <div class="container">
+        <h2>La carte de route</h2>
+        <div id="mapid" style="height: 50vh;"></div>        
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+   
+    <script type="text/javascript">
+        window.onload = function(){
+            var map = L.map('mapid').setView([45.837469, 1.489231], 16);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([45.837469, 1.489231]).addTo(map)
+            .bindPopup("<h3>L'escalier</h3><address>3, Place Gay Lussac<br/>87400 Saint-Léonard-de-Noblat</address>");
+
+            let circle = L.circle([45.837469, 1.489231], {
+            color: 'e58714',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 150
+            }).addTo(map);
+        
+        }
+        
+    </script>
+{% endblock %}
