@@ -4,7 +4,7 @@
         <meta charset="UTF-8">    
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-         <link rel="stylesheet" href="/assets/css/app.css">
+        <link rel="stylesheet" href="assets/css/styles.min.css">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -30,60 +30,21 @@
                         </li>
                     </ul>
                 {% endif %}
-
             </div>
         </nav>
+        <div>
+            <div class="logoj2n" ><img src="/assets/img/logoj2n.png" height="250px" width="250px"</div>
+        </div>
         {% block body %}
-        
-        <div class="container">
-
-            <div id="slider">
-            <button class="prev sliderbutton">&lt;</button>
-            <button class="next sliderbutton">&gt;</button>
-            <div class="slide">
-                <img src="assets/img/rock.jpg" alt="Une belle image" />
-                <h1>Bienvenue sur mon slide !</h1>
-                <p>
-                    C'est moi qui l'ai fait tout seul, avec mes p'tits doigts et mon
-                    gros cerveau…
-                </p>
-            </div>
-            <div class="slide">
-                <img src="assets/img/hotel.jpg" alt="Une belle image aussi" />
-                <h2>Vous trouvez pas qu'il est hyper classe ?</h2>
-                <p>
-                    Non sans dec', vous trouvez pas ? Parce que moi, je le trouve
-                    vraiment hyper classe.
-                </p>
-            </div>
-            <div class="slide">
-                <img src="assets/img/capture.png" alt="Une image moins belle mais pas mal quand même" />
-                <h2>Ou classe ? Ou pas ? Hein ?</h2>
-                <p>
-                    Bah, vous y connaissez rien toute façon. Faisez-en des diaporamas,
-                    on verra bien…
-                </p>
-            </div>
-        </div>
-
-        </div>
-
+            
         {% endblock %}
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="./assets/js/diapo.js" />
+        <script src="/assets/js/diapo.js"></script>
 
-        {% block javascripts %}
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $('.carousel').carousel({
-                        interval: 2000
-                    })
-                });
-            </script>
-            <script src="{{ asset('assets/js/diapo.js') }}"></script>
-        {% endblock %}
+        {% block javascripts %}{% endblock %}
 
     </body>
 </html>

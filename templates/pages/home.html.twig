@@ -19,10 +19,42 @@
     </div>
 
     <div class="container">
+
+            <div id="slider">
+            <button class="prev sliderbutton">&lt;</button>
+            <button class="next sliderbutton">&gt;</button>
+            <div class="slide">
+                <img src="assets/img/rock.jpg" alt="Une belle image" />
+                <h1>Bienvenue sur mon slide !</h1>
+                <p>
+                    C'est moi qui l'ai fait tout seul, avec mes p'tits doigts et mon
+                    gros cerveau…
+                </p>
+            </div>
+            <div class="slide">
+                <img src="assets/img/hotel.jpg" alt="Une belle image aussi" />
+                <h2>Vous trouvez pas qu'il est hyper classe ?</h2>
+                <p>
+                    Non sans dec', vous trouvez pas ? Parce que moi, je le trouve
+                    vraiment hyper classe.
+                </p>
+            </div>
+            <div class="slide">
+                <img src="assets/img/capture.png" alt="Une image moins belle mais pas mal quand même" />
+                <h2>Ou classe ? Ou pas ? Hein ?</h2>
+                <p>
+                    Bah, vous y connaissez rien toute façon. Faisez-en des diaporamas,
+                    on verra bien…
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5" >
         <h2>Les derniers jeux</h2>
         <div class="row flex">
         {% for jeux in jeux %}
-            <div class="col-4">
+            <div class="col-4 ">
             <div class="card">
                 <div class="card-body">
                 <h5 class="card-title">
@@ -35,4 +67,14 @@
         {% endfor %}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('.carousel').carousel({
+        interval: 2000
+        })
+        });
+    </script>
 {% endblock %}

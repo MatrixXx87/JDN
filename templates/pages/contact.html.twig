@@ -33,11 +33,23 @@
    
     <script type="text/javascript">
         window.onload = function(){
-            var map = L.map('mapid').setView([51.505, -0.09], 13);
+            var map = L.map('mapid').setView([45.837469, 1.489231], 16);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
+
+            L.marker([45.837469, 1.489231]).addTo(map)
+            .bindPopup("<h3>L'escalier</h3><address>3, Place Gay Lussac<br/>87400 Saint-Léonard-de-Noblat</address>");
+
+            let circle = L.circle([45.837469, 1.489231], {
+            color: 'e58714',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 150
+            }).addTo(map);
+        
         }
+        
     </script>
 {% endblock %}
