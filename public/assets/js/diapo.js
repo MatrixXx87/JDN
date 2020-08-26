@@ -61,7 +61,7 @@ $(document).ready(function() {
   function start() {
     slideTimer = setInterval(function() {
       move("next");
-    }, 2000);
+    }, 4000);
   }
 
   //Arrete le timer
