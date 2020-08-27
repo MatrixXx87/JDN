@@ -42,21 +42,17 @@
   </div>
   <div class="container mt-4">
 
-    <p>
-      {{ jeux.description | nl2br }}
-    </p>
-
     <div class="row">
       <div class="col-md-9">
         <h2>Caractéristiques</h2>
         <table class="table table-striped">
           <tr>
             <td>Description</td>
-            <td>{{ jeux.description }} </td>
+            <td>{{ jeux.description | nl2br}} </td>
           </tr>
           <tr>
             <td>Regle</td>
-            <td>{{ jeux.regledujeu }}</td>
+            <td>{{ jeux.regledujeu | nl2br}}</td>
           </tr>
           <tr>
             <td>Age recommandé</td>
